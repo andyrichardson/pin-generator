@@ -54,6 +54,11 @@ class PinGenerator {
         return !s.contains(pinToString());
     }
 
+    private boolean checkReverseSequence(){
+        String s = "9876543210";
+        return !s.contains(pinToString());
+    }
+
     private boolean checkHistory(){
         for(int[] p : history){
             if(Arrays.equals(p, pin)){
@@ -72,7 +77,7 @@ class PinGenerator {
         return !sortcode.contains(pinToString());
     }
 
-    /* UTILS */
+    /* Utils */
     private void makePin(){
         for(int n = 0; n < PinGenerator.length; n++){
             pin[n] = rand.nextInt(9);
@@ -87,6 +92,7 @@ class PinGenerator {
         valid = valid & checkHistory();
         valid = valid & checkAccountNo();
         valid = valid & checkSortCode();
+        valid = valid & checkReverseSequence();
 
         return valid;
 
